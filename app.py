@@ -1,8 +1,7 @@
-import csv
-import codecs
-import os
-import random
-import numpy
+from csv import reader
+from codecs import open
+from random import randint
+from numpy import unique
 import eel
 
 @eel.expose
@@ -13,10 +12,10 @@ def question():
     # Лист слов
     words = []
 
-    with codecs.open('TOEFLWordBase.csv', 'r', encoding='utf-8', errors='ignore') as row_words:
+    with open('TOEFLWordBase.csv', 'r', encoding='utf-8', errors='ignore') as row_words:
         # Считываем содержимое файла в итерируемый объект
-        reader = csv.reader(row_words)
-        for row in reader:
+        reader_obj = reader(row_words)
+        for row in reader_obj:
             answers.append(row[2])
 
             # Каждое слово - словарь со значениями
@@ -31,14 +30,14 @@ def question():
             words.append(word)
 
     # Случайное слово из общего списка
-    index = random.randint(0, len(words)-1)
+    index = randint(0, len(words)-1)
     word = words[index]
 
     # Создаем лист трех случайных чисел 
     # Проверяем, чтобы они все были разные
     a_indexes = []
     for i in range(0, 3):
-            a_indexes.append(random.randint(0, len(answers)))
+            a_indexes.append(randint(0, len(answers) - 1))
     
     # Добавляем в список индексов ответов индекс текущего слова
     # Это нужно, чтобы другие варианты не повторяли правильный ответ
@@ -46,9 +45,9 @@ def question():
 
     # Проверяем на уникальность лист индексов
     # Все четыре индекса должны быть разные
-    while len(numpy.unique(a_indexes)) != len(a_indexes):
+    while len(unique(a_indexes)) != len(a_indexes):
         for i in range(0, 3):
-            a_indexes.append(random.randint(0, len(answers)))
+            a_indexes.append(randint(0, len(answers) - 1))
     
     question = {
         'word': word['word'],
@@ -64,7 +63,7 @@ def question():
 
 web_app_options = {
     'mode': "chrome-app", #or "chrome"
-    'port': 8082,
+    'port': 8081,
 }
 
 eel.init('web')
