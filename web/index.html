@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Word-checker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="main.js"></script>
+    <style>
+        html{
+            overflow: hidden;
+        }
+        #answs > li{
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        #answs > li:hover{
+            text-decoration: underline;
+        }
+        #res{
+            transition: transform .3s ease;
+            transform: translateX(15px);
+            font-size: 36px;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero is-info is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <h2 id="res" class="subtitle"></h2>
+                <h1 id="question" class="title"></h1>
+                <ol id="answs" type="a"></ol>
+            </div>
+            <button class="button is-warning" onclick="generateQustion()"> Новое слово </button>
+        </div>
+    </section>
+    
+</body>
+</html>
