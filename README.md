@@ -16,4 +16,5 @@
 Наслаждайтесь 🎉🎉🎉 
 
 *Created by Mylcev Vladimir (**tardigrada777**)*  
+*Thanks to Chayn Par-ool*  
 *April, 2019*
